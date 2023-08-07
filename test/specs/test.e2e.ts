@@ -56,26 +56,25 @@ describe('Amazon search Laptop details from brand', () => {
         // Scenario : 0d Customer review - Click 3 star >> Clicking on Filter of  3  stars & Up
         const starElement = await browser.$("//section[@aria-label='3 Stars & Up']");
         await starElement.click();
-        await browser.pause(5000); // Wait for the filters to apply
+        await browser.pause(10000); // Wait for the filters to apply
 
 
 
         //Here I can Implement List for iterate the no of lapotp comes under 3 star 
 
         // Scenario :06 Results section - Open first search result in a new Tab >> Open first search result in a new tab
-        const firstResultLink = await browser.$('[data-component-type="s-search-result"]');
+        const firstResultLink = await browser.$("//div[@data-component-type='s-search-result']//span[@data-component-type='s-product-image']/a");
         await firstResultLink.click({ button: 'middle' });
-        await browser.pause(4000);
+        await browser.pause(10000);
 
         await browser.saveScreenshot("wdio.png")
 
         // Switch to the new window
         const [originalWindowHandle, newWindowHandle] = await browser.getWindowHandles();
         await browser.switchToWindow(newWindowHandle);
-
-        await browser.scroll(0, 4800);
-        await browser.pause(2000);
-
+        await browser.pause(10000);
+        await browser.scroll(0, 5700);
+        
         await browser.saveScreenshot("wdio2.png")
 
 
@@ -95,9 +94,6 @@ describe('Amazon search Laptop details from brand', () => {
         });
 
       
-
-        //Tear down the browser >> End the browser session
-        await browser.deleteSession();
-    });
+    },1200000);
 
 })
